@@ -17,7 +17,7 @@ def generate_launch_description():
     # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
     # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
 
-    package_name='sim_bot' #<--- CHANGE ME
+    package_name='fejemis_sim' #<--- CHANGE ME
 
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
@@ -67,7 +67,7 @@ def generate_launch_description():
         namespace='',
         executable="rviz2",
         name="rviz2",
-        arguments=['-d' + os.path.join(get_package_share_directory('sim_bot'), 'config', 'main.rviz')]
+        arguments=['-d' + os.path.join(get_package_share_directory('fejemis_sim'), 'config', 'main.rviz')]
     )
 
     # Launch them all!
