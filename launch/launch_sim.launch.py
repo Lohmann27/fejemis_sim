@@ -17,7 +17,7 @@ def generate_launch_description():
     # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
     # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
 
-    package_name='fejemis_sim' #<--- CHANGE ME
+    package_name='fejemis_sim' 
 
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
@@ -35,12 +35,14 @@ def generate_launch_description():
     
     # Include the Gazebo launch file, provided by the gazebo_ros package
     gazebo_params_path = os.path.join(
-                  get_package_share_directory(package_name),'config','gazebo_params.yaml')
+                    get_package_share_directory(package_name),'config','gazebo_params.yaml')
+    
+    world_file_path = 'fejemis_sim/worlds/sim_world' #your path to the world file
     
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
-                    launch_arguments={'extra gazebo args': '--ros-args --params-file ' + gazebo_params_path}.items(),
+                    launch_arguments={'extra gazebo args': '--ros-args --params-file ' + gazebo_params_path, 'world': world_file_path}.items(),
             )
     
 
