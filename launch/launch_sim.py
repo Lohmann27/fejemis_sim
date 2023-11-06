@@ -98,5 +98,4 @@ def generate_launch_description():
         diff_drive_spawner,
         joint_broad_spawner,
         rviz2,
-        
     ])

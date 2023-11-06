@@ -24,5 +24,5 @@ def generate_launch_description():
 
     return LaunchDescription([
         joy_node,
-        teleop_node
+        teleop_node,
     ])
