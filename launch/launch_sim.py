@@ -19,9 +19,9 @@ def generate_launch_description():
 
     package_name='fejemis_sim' 
 
-    rsp = IncludeLaunchDescription(
+    model_sim = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory(package_name),'launch','rsp.launch.py'
+                    get_package_share_directory(package_name),'launch','launch_model_sim.py'
                 )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()   
     )
 
@@ -72,9 +72,26 @@ def generate_launch_description():
         arguments=['-d' + os.path.join(get_package_share_directory('fejemis_sim'), 'config', 'main.rviz')]
     )
 
+    # slam = Node(
+    #     package="slam_toolbox",
+    #     namespace='',
+    #     executable="online_async_launch.py",
+    #     name="rviz2",
+    #     arguments=['params_file:=./fejemis_sim/config/mapper_params_online_async.yaml use_sim_time:=true']
+    # )
+
+    # twist_mux = Node(
+    #     package="twist_mux",
+    #     executable="twist_mux",
+    #     arguments=['--params-file' + os.path.join(get_package_share_directory('fejemis_sim'), 'config', 'twist_mux.yaml'), '-r' + 'cmd_vel_out:=diff_cont/cmd_vel_unstamped']
+    # )
+
+
+
+
     # Launch them all!
     return LaunchDescription([
-        rsp,
+        model_sim,
         joystick,
         gazebo,
         spawn_entity,
