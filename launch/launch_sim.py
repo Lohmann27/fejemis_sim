@@ -19,7 +19,7 @@ def generate_launch_description():
 
     package_name='fejemis_sim' 
 
-    model_sim = IncludeLaunchDescription(
+    rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','launch_model_sim.py'
                 )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()   
@@ -29,6 +29,14 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','joystick.launch.py'
                 )])
+    )
+
+    twist_mux_params = os.path.join(get_package_share_directory(package_name), 'config','twist_mux.yaml')
+    twist_mux = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        parameters=[twist_mux_params, {'use_sim_time': True}],
+        remappings=[('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')]
     )
 
 
@@ -72,30 +80,23 @@ def generate_launch_description():
         arguments=['-d' + os.path.join(get_package_share_directory('fejemis_sim'), 'config', 'main.rviz')]
     )
 
-    # slam = Node(
-    #     package="slam_toolbox",
-    #     namespace='',
-    #     executable="online_async_launch.py",
-    #     name="rviz2",
-    #     arguments=['params_file:=./fejemis_sim/config/mapper_params_online_async.yaml use_sim_time:=true']
-    # )
-
-    # twist_mux = Node(
-    #     package="twist_mux",
-    #     executable="twist_mux",
-    #     arguments=['--params-file' + os.path.join(get_package_share_directory('fejemis_sim'), 'config', 'twist_mux.yaml'), '-r' + 'cmd_vel_out:=diff_cont/cmd_vel_unstamped']
-    # )
-
-
-
+    # slam_params = os.path.join(get_package_share_directory(package_name), 'config','mapper_params_online_async.yaml')
+    # slam = IncludeLaunchDescription(
+    #             PythonLaunchDescriptionSource([os.path.join(
+    #                 get_package_share_directory('slam_toolbox'), 'launch', 'online_async_launch.py')]),
+    #                 launch_arguments={'slam_params_file:=' + slam_params, 'use_sim_time:=true'}.items(),
+    #         )
 
     # Launch them all!
     return LaunchDescription([
-        model_sim,
+        rsp,
         joystick,
+        twist_mux,
         gazebo,
         spawn_entity,
         diff_drive_spawner,
         joint_broad_spawner,
         rviz2,
+        #slam,
+        
     ])
