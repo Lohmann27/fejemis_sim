@@ -45,7 +45,7 @@ def generate_launch_description():
     gazebo_params_path = os.path.join(
                     get_package_share_directory(package_name),'config','gazebo_params.yaml')
     
-    world_file_path = 'fejemis_sim/worlds/sim_world' #your path to the world file
+    world_file_path = 'src/fejemis_sim/worlds/sim_world' #your path to the world file
     
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
