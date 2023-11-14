@@ -80,6 +80,18 @@ def generate_launch_description():
         arguments=['-d' + os.path.join(get_package_share_directory('fejemis_sim'), 'config', 'main.rviz')]
     )
 
+    # localization = IncludeLaunchDescription(
+    #             PythonLaunchDescriptionSource([os.path.join(
+    #                 get_package_share_directory(package_name),'launch','localization_launch.py'
+    #             )]), launch_arguments={'map': './src/fejemis_sim/maps/my_map_save.yaml','use_sim_time': 'true',}.items(),
+    # )
+
+    # navigation = IncludeLaunchDescription(
+    #             PythonLaunchDescriptionSource([os.path.join(
+    #                 get_package_share_directory(package_name),'launch','navigation_launch.py'
+    #             )]) , launch_arguments={'use_sim_time': 'true', 'map_subscribe_transient_local': 'true'}.items(),
+    # )
+
     # slam_params = os.path.join(get_package_share_directory(package_name), 'config','mapper_params_online_async.yaml')
     # slam = IncludeLaunchDescription(
     #             PythonLaunchDescriptionSource([os.path.join(
@@ -98,5 +110,7 @@ def generate_launch_description():
         joint_broad_spawner,
         rviz2,
         #slam,
+        # localization,
+        # navigation
         
     ])

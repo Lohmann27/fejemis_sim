@@ -7,7 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1/Mass Properties1
-        - /Map2/Status1
       Splitter Ratio: 0.5
     Tree Height: 475
   - Class: rviz_common/Selection
@@ -254,9 +253,9 @@ Visualization Manager:
       Binary representation: false
       Binary threshold: 100
       Class: rviz_default_plugins/Map
-      Color Scheme: map
+      Color Scheme: costmap
       Draw Behind: false
-      Enabled: false
+      Enabled: true
       Name: Map
       Topic:
         Depth: 5
@@ -272,7 +271,7 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /global_costmap/costmap_updates
       Use Timestamp: false
-      Value: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

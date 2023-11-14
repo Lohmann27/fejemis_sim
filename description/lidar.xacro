@@ -30,7 +30,7 @@
         <material>Gazebo/Black</material>
 
         <sensor name="laser" type="ray">
-            <visualize>true</visualize>
+            <visualize>false</visualize>
             <update_rate>10</update_rate>
             <ray> 
                 <scan>
